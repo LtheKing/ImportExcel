@@ -24,5 +24,31 @@ class Bank extends CI_Controller {
 		$this->load->view('view_list_bank', $data);
 	}
 
+	public function lists_cabang($id){
+		$data['NamaProvinsi'] = "INDONESIA";
+		$data['data_provinsi'] = $this->BankModel->data_provinsi();
+		$data['model'] = $this->BankModel->view_cabang($id); // Panggil fungsi view() yang ada di model siswa
+		
+		$this->load->view('view_cabang_bank', $data);
+	}
+
+	public function search_provinsi($IDBank){
+		if($this->input->post('submit')){ 
+		$search_provinsi=$this->input->post('search_provinsi');
+		$IDBank=$this->input->post('IDBank');
+		$data['cari'] = $this->input->post('search_provinsi');
+		$data['model'] = $this->BankModel->view_search_provinsi($IDBank,$search_provinsi); // Panggil fungsi view() yang ada di model siswa
+		$data['data_provinsi'] = $this->BankModel->data_provinsi();
+		$this->session->set_userdata('sess_cari', $data['cari']);
+		$this->load->view('view_cabang_bank', $data);
+		}
+		else {
+		$search_provinsi = $this->session->userdata('sess_cari');
+		$data['model'] = $this->BankModel->view_search_provinsi($IDBank,$search_provinsi); // Panggil fungsi view() yang ada di model siswa
+		$data['data_provinsi'] = $this->BankModel->data_provinsi();
+		$data['cari'] = $search_provinsi;
+		$this->load->view('view_cabang_bank', $data);
+		}
+	}
 
 }

@@ -24,6 +24,47 @@ class Nasabah extends CI_Controller {
 		$this->load->view('view', $data);
 	}
 
+	public function search_nomor($IDBank){
+		if($this->input->post('submit')){ 
+		$search_nomor=$this->input->post('search_nomor');
+		$IDBank=$this->input->post('IDBank');
+		$data['cari'] = $this->input->post('search_nomor');
+		$data['model'] = $this->NasabahModel->view_search_nomor($IDBank,$search_nomor); // Panggil fungsi view() yang ada di model siswa
+		$data['keyword'] = $search_nomor;
+		$this->session->set_userdata('sess_cari', $data['cari']);
+		$this->load->view('view_search', $data);
+		}
+		else {
+		$search_nomor = $this->session->userdata('sess_cari');
+		$data['model'] = $this->NasabahModel->view_search_nomor($IDBank,$search_nomor); // Panggil fungsi view() yang ada di model siswa
+		$data['keyword'] = $search_nomor;
+		$this->load->view('view_search', $data);
+		}
+	}
+
+	public function search_kategori($IDBank){
+		if($this->input->post('submit')){ 
+		$search_kategori=$this->input->post('search_kategori');
+		$search_tipe=$this->input->post('search_tipe');
+		$IDBank=$this->input->post('IDBank');
+		$data['cari'] = $this->input->post('search_kategori');
+		$data['cari_tipe'] = $this->input->post('search_tipe');
+		$data['model'] = $this->NasabahModel->view_search_kategori($IDBank,$search_kategori,$search_tipe); // Panggil fungsi view() yang ada di model siswa
+		$this->session->set_userdata('sess_cari', $data['cari']);
+		$this->session->set_userdata('sess_cari_tipe', $data['cari_tipe']);
+		$this->load->view('view_search_kategori', $data);
+		}
+		else {
+		$search_kategori = $this->session->userdata('sess_cari');
+		$search_tipe = $this->session->userdata('sess_cari_tipe');
+		$data['model'] = $this->NasabahModel->view_search_kategori($IDBank,$search_kategori,$search_tipe); // Panggil fungsi view() yang ada di model siswa
+		$data['cari'] = $search_kategori;
+		$data['cari_tipe'] = $search_tipe;
+		$this->load->view('view_search_kategori', $data);
+		}
+	}
+
+
 	
 	public function import($IDBank){
 		// Load plugin PHPExcel nya

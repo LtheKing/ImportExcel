@@ -37,63 +37,15 @@
 		<table border=0 class="table">
 		<tr>
 			<td style="width: 10%;">
-		<form method="post" action="<?php echo base_url("index.php/nasabah/import/$IDBank"); ?>" enctype="multipart/form-data">
-		<!--
-		-- Buat sebuah input type file
-		-- class pull-left berfungsi agar file input berada di sebelah kiri
-		-->
-		<table border="0"><tr><td style="height: 20px;">
-			<b>Select Excel File</b>
-		</td></tr>
-		<tr><td style="height: 20px;">
-			<input type="file" name="file" required>
-			<input type="hidden" name="id" value="<?php echo $IDBank; ?>" required>
-		</td></tr>
-		<tr><td style="height: 50px;"	>
-			<button type='submit' name='import' class="btn btn-info">Import</button>
-		</td></tr></table>
-		
-	</form>
-
+			&nbsp;
 			</td>
-			<td style="text-align: right; width: 80%; padding-right: 5%;">
-				<table style="text-align:right;"><tr><td>
-					<form method="post" id="search_no" enctype="multipart/form-data" 
-					action="<?php echo base_url()."index.php/nasabah/search_nomor/".$IDBank; ?>" >
-				<label>Masukan Nomor / Nama Nasabah </label>
-				<input type="text" name="search_nomor" size="25" />
-				<input type="hidden" name="IDBank" value="<?php echo $IDBank; ?>" size="25" />
-				<input type="submit" name="submit" value="Cari" class="btn btn-info" />
-					</form>
-				</td></tr>
-					<tr><td >
-					<form method="post" id="search_category" enctype="multipart/form-data" 
-					 action="<?php echo base_url()."index.php/nasabah/search_kategori/".$IDBank; ?>" >
-					<label>Cari Berdasarkan </label>
-					<select name="search_tipe">
-            		<option value="1">Action</option>
-		            <option value="2">Status</option>
-		            </select>
-					<input type="text" name="search_kategori" size="25" />
-					<input type="hidden" name="IDBank" value="<?php echo $IDBank; ?>" size="25" />
-					<input type="submit" name="submit" value="Cari" class="btn btn-info" />
-					</form>				
-					</td></tr></table>
-		
-		
+			<td style="text-align: left; width: 80%; padding-right: 5%;">
+			Pencarian pada <b>Nomor / Nama Nasabah</b> dengan kata kunci " <?php echo "$keyword"; ?> "
 			</td>
 			<td style="width: 10%;">
-				<table><tr><td>
-			<a href="<?= base_url()."index.php/bank/lists_cabang/".$IDBank; ?>">
-			<input type="button" name="link-address" value="Daftar Alamat Bank" class="btn btn-info" />
-			</a>
-			</td></tr>
-			<tr><td>
-			<br><a href="<?= base_url('index.php/bank/index'); ?>">
-				<input type="button" name="back" value="Kembali ke menu awal" class="btn btn-info" />
+				<a href="<?php echo base_url()."index.php/nasabah/lists/".$IDBank; ?>">
+				<input type="button" name="back" value="Kembali ke menu Sebelumnya" class="btn btn-info" />
 				</a>
-			</td></tr>				
-				</table>
 			</td>
 			
 		</tr>

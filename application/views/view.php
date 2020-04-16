@@ -12,10 +12,10 @@
 	</script>
 <style type="text/css">
 	.th{
-		text-align: center; padding-left: 100px; padding-right: 100px;	
+		text-align: center; 
 	}
 	.td{
-		height: 150px;
+		height: 60px;
 	}
 </style>
 </head>
@@ -58,21 +58,25 @@
 			</td>
 			<td style="text-align: right; width: 80%; padding-right: 5%;">
 				<table style="text-align:right;"><tr><td>
-					<form method="post" id="search_no" enctype="multipart/form-data">
+					<form method="post" id="search_no" enctype="multipart/form-data" 
+					action="<?php echo base_url()."index.php/nasabah/search_nomor/".$IDBank; ?>" >
 				<label>Masukan Nomor / Nama Nasabah </label>
-				<input type="text" name="no" size="25" />
-				<input type="submit" name="search_no" value="Cari" class="btn btn-info" />
+				<input type="text" name="search_nomor" size="25" />
+				<input type="hidden" name="IDBank" value="<?php echo $IDBank; ?>" size="25" />
+				<input type="submit" name="submit" value="Cari" class="btn btn-info" />
 					</form>
 				</td></tr>
 					<tr><td >
-					<form method="post" id="search_category" enctype="multipart/form-data">
+					<form method="post" id="search_category" enctype="multipart/form-data" 
+					 action="<?php echo base_url()."index.php/nasabah/search_kategori/".$IDBank; ?>" >
 					<label>Cari Berdasarkan </label>
-					<select>
-            		<option>Action</option>
-		            <option>Status</option>
+					<select name="search_tipe">
+            		<option value="1">Action</option>
+		            <option value="2">Status</option>
 		            </select>
-					<input type="text" name="category" size="25" />
-					<input type="submit" name="search_category" value="Cari" class="btn btn-info" />
+					<input type="text" name="search_kategori" size="25" />
+					<input type="hidden" name="IDBank" value="<?php echo $IDBank; ?>" size="25" />
+					<input type="submit" name="submit" value="Cari" class="btn btn-info" />
 					</form>				
 					</td></tr></table>
 		
@@ -80,7 +84,10 @@
 			</td>
 			<td style="width: 10%;">
 				<table><tr><td>
-			<input type="button" name="link-address" value="Daftar Alamat Bank Mega" class="btn btn-info" /></td></tr>
+			<a href="<?= base_url()."index.php/bank/lists_cabang/".$IDBank; ?>">
+			<input type="button" name="link-address" value="Daftar Alamat Bank" class="btn btn-info" />
+			</a>
+			</td></tr>
 			<tr><td>
 			<br><a href="<?= base_url('index.php/bank/index'); ?>">
 				<input type="button" name="back" value="Kembali ke menu awal" class="btn btn-info" />
@@ -94,7 +101,43 @@
 	<div class="table-responsive" style="float: left; width: 75%; ">
 		<table class="table table-bordered" >
 		<tr>
-			<th class='th'>Nomor Kartu</th>
+
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nomor_Kartu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nama_Nasabah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal_Turun_Account&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Open_Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WO_Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DOB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last_Payment_Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last_Payment&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Limit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OS_Ball&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Principal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nomor_HP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nomor_Rumah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nomor_Kantor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nomor_EC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ibu_Kandung&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jenis_Kelamin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alamat_rumah_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<!-- <th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alamat_rumah_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alamat_rumah_3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alamat_rumah_4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nama_Kantor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alamat_Kantor_1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<!-- <th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alamat_Kantor_2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alamat_Kantor_3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alamat_Kantor_4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> -->
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nama_EC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alamat_EC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Regional&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Permanent_Message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<!-- <th class='th'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last_Report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>-->
+
+			<!-- 		<th class='th'>Nomor Kartu</th>
 					<th class='th'>Nama Nasabah</th>
 					<th class='th'>Status</th>
 					<th class='th'>Action</th>
@@ -115,19 +158,19 @@
 					<th class='th'>Ibu Kandung</th>
 					<th class='th'>Jenis Kelamin</th>
 					<th class='th'>Alamat rumah 1</th>
-					<!-- <th class='th'>Alamat rumah 2</th>
+					<th class='th'>Alamat rumah 2</th>
 					<th class='th'>Alamat rumah 3</th>
-					<th class='th'>Alamat rumah 4</th> -->
+					<th class='th'>Alamat rumah 4</th>
 					<th class='th'>Nama Kantor</th>
 					<th class='th'>Alamat Kantor 1</th>
-					<!-- <th class='th'>Alamat Kantor 2</th>
+					<th class='th'>Alamat Kantor 2</th>
 					<th class='th'>Alamat Kantor 3</th>
-					<th class='th'>Alamat Kantor 4</th> -->
+					<th class='th'>Alamat Kantor 4</th>
 					<th class='th'>Nama EC</th>
 					<th class='th'>Alamat EC</th>
 					<th class='th'>Regional</th>
 					<th class='th'>Permanent Message</th>
-					<!-- <th class='th'>Last Report</th>		 -->
+					<th class='th'>Last Report</th>		 -->
 		</tr>
 
 		<?php
@@ -181,7 +224,7 @@
 	<div class="table-responsive" style="float:right; width: 20%; ">
 		<table class="table" >
 		<tr>
-					<th class='th' colspan="3"><br>AKSI<br>&nbsp;</th>		
+					<th class='th' colspan="3">AKSI&nbsp;</th>		
 		</tr>
 
 		<?php
